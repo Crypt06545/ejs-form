@@ -8,26 +8,30 @@
   </head>
   <body>
     <div class="min-h-screen bg-zinc-900 p-10 text-white">
-        <div>
-            <a class="text-blue-500" href="/">Back To Home</a>
-          </div>
-      <h1 class="text-zinc-400 text-center text-2xl mb-10">All users</h1>
+      <div>
+        <a class="text-blue-500" href="/">Back To Home</a>
+      </div>
+      <h1 class="text-zinc-400 text-center text-2xl mb-10">All Users</h1>
       <div class="grid grid-cols-4 gap-5">
-       <% users.forEach((user)=>{ %>
-        <div class="w-72 p-4 bg-zinc-800 rounded-lg">
-            <div>
-                <img class="w-full h-64 object-cover rounded-lg" src=" <%= user.image %> " alt="">
+        <% if(users.length > 0) { %>
+          <% users.forEach((user) => { %>
+            <div class="w-72 p-4 bg-zinc-800 rounded-lg">
+              <div>
+                <img class="w-full h-64 object-cover rounded-lg" src="<%= user.image %>" alt="User Image">
+              </div>
+              <h3 class="text-xl mt-3 tracking-tighter"><%= user.name %></h3>
+              <h5 class="text-zinc-500"><%= user.email %></h5>
+              <div class="flex mt-10 gap-3">
+                <a class="text-zinc-200" href="/edit/<%= user._id %>">Edit User</a>
+                <a class="text-red-500" href="/delete/<%= user._id %>" >Delete User</a>
+              </div>
             </div>
-            <h3 class="text-xl mt-3 tracking-tighter"> <%= user.name%> </h3>
-            <h5 class="text-zinc-500"><%= user.email %></h5>
-            <div class="flex mt-10 gap-3">
-              <a class="text-zinc-200" href="/update">Edit User</a>
-              <a class="text-red-500" href="/delete/<%= user._id %>" meth>Delete User</a>
-            </div>
-          </div>
-       <% }) %>
-        
+          <% }) %>
+        <% } else { %>
+          <h3 class="text-zinc-500 col-span-4 text-center">No data found</h3>
+        <% } %>
       </div>
     </div>
   </body>
 </html>
+

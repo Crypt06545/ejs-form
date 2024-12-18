@@ -35,10 +35,24 @@ app.post("/create", async (req, res) => {
   res.redirect("/all-users");
 });
 
+app.get("/edit/:id", async (req, res) => {
+  const user = await User.findOne({ _id: req.params.id });
+  res.render("update", { user });
+});
+
+app.post("/update/:id", async (req, res) => {
+  const { image, name, email } = req.body;
+  const user = await User.findOneAndUpdate(
+    { _id: req.params.id },
+    { image, name, email },
+    { new: true }
+  );
+  res.redirect("/all-users");
+});
+
 app.get("/delete/:id", async (req, res) => {
   const deleteUser = await User.findOneAndDelete({ _id: req.params.id });
   res.redirect("/all-users");
 });
-
 
 export default app;

@@ -9,14 +9,14 @@
   <body>
     <div class="min-h-screen bg-zinc-900 p-10 text-white">
       <div>
-        <a class="text-blue-500" href="/all-users">All Users</a>
+        <a class="text-blue-500" href="/">Back To Home</a>
       </div>
-      <h1 class="text-zinc-400 text-center text-2xl mb-10">create Form</h1>
-      <form action="/update" method="post">
-        <input class="bg-transparent border-2 border-zinc-800 rounded-lg  px-5 py-3" type="text" placeholder="name" name="name" />
-        <input class="bg-transparent border-2 border-zinc-800 rounded-lg  px-5 py-3" type="text" placeholder="email" name="email" />
-        <input class="bg-transparent border-2 border-zinc-800 rounded-lg  px-5 py-3" type="text" placeholder="image" name="image" />
-        <input type="submit" class="px-5 py-3 cursor-pointer bg-blue-500 rounded-lg" value="Submit">
+      <h1 class="text-zinc-400 text-center text-2xl mb-10">Update User</h1>
+      <form action="/update/<%= user._id %>" method="post">
+        <input class="bg-transparent border-2 border-zinc-800 rounded-lg  px-5 py-3" type="text" placeholder="name" name="name" value="<%= user.name %>" />
+        <input class="bg-transparent border-2 border-zinc-800 rounded-lg  px-5 py-3" type="text" placeholder="email" name="email" value="<%= user.email %>" />
+        <input class="bg-transparent border-2 border-zinc-800 rounded-lg  px-5 py-3" type="text" placeholder="image" name="image" value="<%= user.image %>" />
+        <input type="submit" class="px-5 py-3 cursor-pointer bg-yellow-500 text-black rounded-lg" value="Update User">
       </form>
     </div>
   </body>
