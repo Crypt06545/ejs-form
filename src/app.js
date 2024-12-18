@@ -20,22 +20,25 @@ app.get("/", (req, res) => {
   res.render("create");
 });
 
-app.get("/create", async (req, res) => {
-  const newUSer = await User.create({
-    name: "Mehadi",
-    email: "mea@gmail.com",
-    password: "1234",
-  });
-  res.send(newUSer);
+app.get("/all-users", async (req, res) => {
+  const users = await User.find();
+  res.render("allUsers", { users });
 });
 
-app.get("/update", async (req, res) => {
-  let updateUser = await User.findOneAndUpdate(
-    { name: "Mehadi" },
-    { email: "mehadi@gmail.com" },
-    { new: true }
-  );
-  res.send(updateUser);
+app.post("/create", async (req, res) => {
+  const { name, email, image } = req.body;
+  const newUSer = await User.create({
+    name,
+    email,
+    image,
+  });
+  res.redirect("/all-users");
 });
+
+app.get("/delete/:id", async (req, res) => {
+  const deleteUser = await User.findOneAndDelete({ _id: req.params.id });
+  res.redirect("/all-users");
+});
+
 
 export default app;
